@@ -1,24 +1,29 @@
 .message {
-    margin-bottom: 10px;
-    max-width: 80%;
-  }
-  
-  .message.user {
-    align-self: flex-end;
-  }
-  
-  .message.bot {
-    align-self: flex-start;
-  }
-  
-  .message-content {
-    padding: 8px 12px;
-    border-radius: 18px;
-    background-color: #dcf8c6;
-  }
-  
-  .message.user .message-content {
-    background-color: #25d366;
-    color: white;
-  }
-  
+  margin-bottom: 10px;
+  max-width: 80%;
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message.bot {
+  align-self: flex-start;
+}
+
+.message-content {
+  padding: 8px 12px;
+  border-radius: 18px;
+  background-color: #dcf8c6;
+  white-space: pre-wrap; /* Preserve newlines and whitespace */
+}
+
+.message.user .message-content {
+  background-color: #25d366;
+  color: white;
+  white-space: pre-wrap; /* Preserve newlines for user messages */
+}
+
+.message.bot .message-content {
+  white-space: pre-wrap; /* Preserve newlines for bot messages */
+}

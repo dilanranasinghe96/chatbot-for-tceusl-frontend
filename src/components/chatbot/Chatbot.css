@@ -1,17 +1,39 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+
+.chatbox-container {
+  background-image: url('/src/assets/bg.jpeg');
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 100vh;
+  width: 100vw; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .chatbox {
     width: 500px;
-    height: 600px;
-   
+    height: 600px;  
     display: flex;
     flex-direction: column;
     background-color: #ece5dd;
     font-family: Arial, sans-serif;
+    justify-content: center;
   }
   
   .chat-header {
-    padding: 10px;
+    padding: 20px;
     background-color: #075e54;
     color: white;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     border-radius: 15px 15px 0 0;
@@ -69,31 +91,52 @@
     background-color: #128c7e;
   }
   
+
+   .chat-input-container {
+    display: flex; 
+    align-items: center; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    margin: 10px 10px 10px 10px;
+  }
+  
   .chat-input {
-    padding: 10px;
-    background-color: #f0f0f0;
-    display: flex;
-    border-top: 1px solid #ccc;
+    flex: 1; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    outline: none; 
+    transition: border 0.3s;
   }
   
-  .chat-input input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
+  .chat-input:focus {
+    border-color: #007bff; 
   }
   
-  .chat-input button {
-    padding: 10px;
-    background-color: #075e54;
-    color: white;
-    border: none;
-    border-radius: 20px;
+  .send-button {
+    padding: 10px 15px; 
     margin-left: 10px;
-    cursor: pointer;
+    background-color: #007bff; 
+    color: white; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s;
   }
   
-  .chat-input button:hover {
-    background-color: #128c7e;
+  .send-button:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed; 
+  }
+  
+  .send-button:hover:not(:disabled) {
+    background-color: #0056b3; 
+  }
+  
+  .error-message {
+    color: red; 
+    margin-top: 5px; 
   }
   
