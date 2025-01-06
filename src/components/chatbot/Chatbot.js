@@ -18,7 +18,7 @@ function Chatbot() {
         yes: "Yes",
         no: "No",
         faculties: ["Applied Science", "Communication and Business Studies", "Siddha Medicine"],
-        areas: ["General Admission", "Student ID","Sports","Mahapola bursary", "More"],
+        areas: ["General Admission", "Student ID","Sports","Mahapola bursary","Hostel facilities", "More"],
         additionalAreas: ["Hostel facilities", "Library registration", "Mahapola bursary", "Sports", "Transport", "Canteen (foods)", "Health Services"],
         departments: {
           "Applied Science": ["Computer Science", "Physical Science"],
@@ -40,8 +40,8 @@ function Chatbot() {
         no: "නැත",
         // more: "තව",
         faculties: ["ව්‍යවහාරික විද්‍යා පීඨය", "සන්නිවේදන හා ව්‍යාපාර අධ්‍යයන පීඨය", "සිද්ධ වෛද්‍ය පීඨය"],
-        areas: ["සාමාන්‍ය ඇතුලත් කිරීම", "උපාධි පාඨමාලාව පිළිබඳ", "අධ්‍යාපන මණ්ඩලය", "ශිෂ්‍ය හැඳුනුම්පත", "වෙනත්"],
-        additionalAreas: ["නේවාසික පහසුකම්", "පුස්තකාල ලියාපදිංචිය", "මහපොල/බසරි", "ක්‍රිඩා", "ප්‍රවාහන", "ආපන ශාලා", "සෞඛ්‍ය සේවාවන්"],
+        areas: ["සාමාන්‍ය ඇතුලත් කිරීම", "ශිෂ්‍ය හැඳුනුම්පත","ක්‍රීඩා","මහපොල බසරි","නේවාසික පහසුකම්", "වෙනත්"],
+        additionalAreas: ["නේවාසික පහසුකම්", "පුස්තකාල ලියාපදිංචිය", "මහපොල බසරි", "ක්‍රිඩා", "ප්‍රවාහන", "ආපන ශාලා", "සෞඛ්‍ය සේවාවන්"],
         departments: {
           "ව්‍යවහාරික විද්‍යා පීඨය": ["පරිඝණක විද්‍යා අංශය", "භෞතික විද්‍යා අංශය"],
           "සන්නිවේදන හා ව්‍යාපාර අධ්‍යයන පීඨය": ["භාෂා හා සන්නිවේදන අධ්‍යයන අංශය", "ව්‍යාපාර හා කළමනාකරණ අධ්‍යයන අංශය"],
@@ -61,7 +61,7 @@ function Chatbot() {
         yes: "ஆம்",
         no: "இல்லை",
         faculties: ["விண்ணப்ப அறிவியல்", "தகவல் தொடர்பு மற்றும் வணிகக்கல்வி", "சித்த மருத்துவம்"],
-        areas: ["பொது சேர்க்கை", "பட்டப்படிப்பு பற்றி", "கல்வியாளர் குழு", "மாணவர் ID", "மேலும்"],
+        areas: ["பொது சேர்க்கை", "மாணவர் ஐடி", "விளையாட்டு", "மஹாபொல பசாரி", "குடியிருப்பு வசதிகள்", "மற்றவை"],
         additionalAreas: ["விடுதி வசதிகள்", "நூலக பதிவு", "மஹபோலா, உதவித்தொகை", "விளையாட்டுகள்", "விளையாட்டு", "உணவகம்", "மருத்துவமனை", "IT சேவைகள்", "மாணவர் சங்கம்", "கோட்பாட்டுக் கூடங்கள்"],
         departments: {
           "விண்ணப்ப அறிவியல்": ["கணினி அறிவியல்", "அறிவியல்"],
@@ -144,8 +144,12 @@ function Chatbot() {
   const handleLanguageSelection = (language, languageCode) => {
     setSelectedLanguage(languageCode); // Set the selected language code
     setMessages([
+      
       { text: translations[languageCode].welcome, sender: 'bot' },
-      { text: translations[languageCode].selectLanguage, sender: 'bot' }
+      { text: translations[languageCode].selectLanguage, sender: 'bot' },
+      { text: language, sender: 'user' },
+      { text: translations[languageCode].confirmation, sender: 'bot' },
+
     ]);
     setStepHistory([...stepHistory, step]); // Save the current step before moving to the next one
     setStep(1);
@@ -153,7 +157,10 @@ function Chatbot() {
 
   // Step 1: Confirmation Handler
   const handleSelectionConfirmation = (selection) => {
-    setMessages([...messages, { text: selection === "Yes" ? translations[selectedLanguage].buttons.yes : translations[selectedLanguage].buttons.no, sender: 'user' }]);
+    
+    setMessages([
+      ...messages,
+    { text: selection === "Yes" ? translations[selectedLanguage].buttons.yes : translations[selectedLanguage].buttons.no, sender: 'user' }]);
     if (selection === "Yes") {
       setMessages(prev => [...prev, { text: translations[selectedLanguage].selectFaculty, sender: 'bot' }]);
       setStepHistory([...stepHistory, step]);

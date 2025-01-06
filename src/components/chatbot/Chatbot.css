@@ -6,6 +6,7 @@ html {
 }
 
 
+
 .chatbox-container {
   background-image: url('/src/assets/bg.jpeg');
   background-size: cover;
@@ -17,23 +18,26 @@ html {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
 }
 
 .chatbox {
-    width: 500px;
+    width: 800px;
     height: 600px;  
     display: flex;
     flex-direction: column;
     background-color: #ece5dd;
     font-family: Arial, sans-serif;
     justify-content: center;
+    border-radius: 15px 15px 15px 15px;
+
   }
   
   .chat-header {
     padding: 20px;
     background-color: #075e54;
     color: white;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     border-radius: 15px 15px 0 0;
@@ -111,13 +115,13 @@ html {
   }
   
   .chat-input:focus {
-    border-color: #007bff; 
+    border-color: #075e54; 
   }
   
   .send-button {
     padding: 10px 15px; 
     margin-left: 10px;
-    background-color: #007bff; 
+    background-color: #075e54; 
     color: white; 
     border: none;
     border-radius: 5px; 
@@ -132,7 +136,7 @@ html {
   }
   
   .send-button:hover:not(:disabled) {
-    background-color: #0056b3; 
+    background-color: #128c7e; 
   }
   
   .error-message {
