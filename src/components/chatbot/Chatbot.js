@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import OptionButton from '../OptionButton';
 import Message from '../message/Message';
-import './Chatbot.css'; // For styling
+import './Chatbot.css';
 
 function Chatbot() {
   // Translations for all text and button labels in three languages (English, Sinhala, Tamil)
@@ -77,13 +77,13 @@ function Chatbot() {
     { text: translations["en"].selectLanguage, sender: "bot" }
   ]);
   const [step, setStep] = useState(0);
-  const [stepHistory, setStepHistory] = useState([]); // Track the history of steps
-  const [selectedLanguage, setSelectedLanguage] = useState("en"); // Default language: English
+  const [stepHistory, setStepHistory] = useState([]); 
+  const [selectedLanguage, setSelectedLanguage] = useState("en"); 
   const [selectedFaculty, setSelectedFaculty] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showMore, setShowMore] = useState(false);
-  const [userInput, setUserInput] = useState(""); // State for user input
-  const [error, setError] = useState(''); // Error state for handling responses
+  const [userInput, setUserInput] = useState(""); 
+  const [error, setError] = useState(''); 
 
   // Function to update the message text based on the step and selected language
   // const updateMessageForStep = (currentStep) => {
@@ -113,15 +113,15 @@ function Chatbot() {
 
   // Function to handle user input in the text box and send to backend
   const handleUserMessage = async () => {
-    if (!userInput) return; // Do not send empty messages
+    if (!userInput) return; 
     setMessages([...messages, { text: userInput, sender: 'user' }]);
 
     // Send request to the backend for response
     try {
-      const response = await fetch('http://127.0.0.1:5000/chatbot', { // Update URL if needed
+      const response = await fetch('http://127.0.0.1:5000/chatbot', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userInput, language: selectedLanguage }) // Send message and selected language
+        body: JSON.stringify({ message: userInput, language: selectedLanguage }) 
       });
       
       if (!response.ok) {
@@ -130,19 +130,19 @@ function Chatbot() {
 
       const data = await response.json();
       setMessages(prevMessages => [...prevMessages, { text: data.response, sender: 'bot' }]);
-      setError(''); // Clear error state on successful fetch
+      setError(''); 
     } catch (error) {
       console.error("Error fetching response:", error);
       setMessages(prevMessages => [...prevMessages, { text: "Sorry, I couldn't get a response from the server.", sender: 'bot' }]);
       setError("Sorry, I couldn't get a response from the server. " + error.message);
     } finally {
-      setUserInput(""); // Clear input field after sending the message
+      setUserInput(""); 
     }
   };
 
   // Language Selection Handler
   const handleLanguageSelection = (language, languageCode) => {
-    setSelectedLanguage(languageCode); // Set the selected language code
+    setSelectedLanguage(languageCode); 
     setMessages([
       
       { text: translations[languageCode].welcome, sender: 'bot' },
@@ -305,14 +305,14 @@ function Chatbot() {
     placeholder="Type your message"
     onChange={e => setUserInput(e.target.value)}
     onKeyDown={e => e.key === 'Enter' && handleUserMessage()}
-    aria-label="Type your message" // Accessibility
-    autoComplete="off" // Prevent browser suggestions
+    aria-label="Type your message" 
+    autoComplete="off" 
   />
   <button 
     className="send-button" 
     onClick={handleUserMessage} 
-    disabled={!userInput.trim()} // Disable if input is empty
-    aria-label="Send message" // Accessibility
+    disabled={!userInput.trim()} 
+    aria-label="Send message" 
   >
     Send
   </button>
